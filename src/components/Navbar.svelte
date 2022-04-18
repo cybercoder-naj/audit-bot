@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="/#/">
       <img src="/favicon.png" alt="Schoolhouse.world" class="d-inline-block align-text-top">
-      Schoolhouse.world Audit Page
+      Audit Page
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
         aria-expanded="false" aria-label="Toggle navigation">
