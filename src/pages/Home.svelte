@@ -1,4 +1,4 @@
-<main class="container-fluid mt-4">
+<section id="home" class="container-fluid mt-4">
   <div class="row">
     <div class="col-sm-12 col-md-6 d-flex flex-column justify-content-center px-5">
       <h1 class="display-5">Welcome to the Auditing Team!</h1>
@@ -10,7 +10,7 @@
       <img src="./images/home.png" alt="Schoolhouse Audit Page">
     </div>
   </div>
-</main>
+</section>
 
 <style>
   img {

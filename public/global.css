@@ -1,3 +1,9 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2em;
+  overflow-x: hidden;
+}
+
 html, body {
 	position: relative;
 	width: 100%;
