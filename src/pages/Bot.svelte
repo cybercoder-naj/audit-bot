@@ -12,14 +12,17 @@
     answers: {
       engagement: true,
       mastery: true,
-      active: true
-    }
+      active: true,
+      safety: false
+    },
+    safetyMsg: ''
   }
 
   const questions = [
     ['engagement', 'Did the tutor create an engaging environment?'],
     ['mastery', 'Did the tutor teach the topic without significant errors?'],
-    ['active', 'Did the tutor maintain an active learning environment?']
+    ['active', 'Did the tutor maintain an active learning environment?'],
+    ['safety', 'Was there any specific safety concern?']
   ]
 
   let today = ''
@@ -122,8 +125,14 @@
               </div>
             </div>
           {/each}
+          {#if data.answers.safety}
+            <div class="form-group mt-3">
+              <label for="safety-message">Detail the safety concern here.</label>
+              <textarea class="form-control" id="safety-message" rows="3"></textarea>
+            </div>
+          {/if}
         {/if}
-        <div class="mt-3 col-md-6 offset-md-3">
+        <div class="my-3 col-md-6 offset-md-3">
           <input type="submit" class="btn btn-primary form-control" value="Next">
         </div>
       </div>
