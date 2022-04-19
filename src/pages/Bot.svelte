@@ -66,13 +66,13 @@
             Was this a Live Help Session?
           </div>
           <div class="col-12 form-check mt-1 mt-md-0 d-inline-block">
-            <input bind:group={data.isLiveHelp} value={true} class="form-check-input" type="radio" name="live-help" required id="live-help-y" checked>
+            <input bind:group={data.isLiveHelp} value={true} class="form-check-input" type="radio" name="live-help" id="live-help-y" checked>
             <label class="form-check-label" for="live-help-y">
               Yes
             </label>
           </div>
           <div class="form-check d-inline-block">
-            <input bind:group={data.isLiveHelp} value={false} class="form-check-input" type="radio" name="live-help" required id="live-help-n">
+            <input bind:group={data.isLiveHelp} value={false} class="form-check-input" type="radio" name="live-help" id="live-help-n">
             <label class="form-check-label" for="live-help-n">
               No
             </label>
@@ -88,19 +88,19 @@
             Choose the best option from below:
           </div>
           <div class="col-12 form-check mt-1 mt-md-0">
-            <input bind:group={data.type} value={1} class="form-check-input" type="radio" name="tutor-no-show" id="tutor-no-show" checked required>
+            <input bind:group={data.type} value={1} class="form-check-input" type="radio" name="tutor-no-show" id="tutor-no-show" checked>
             <label class="form-check-label" for="tutor-no-show">
               The tutor did not start the meeting.
             </label>
           </div>
           <div class="form-check">
-            <input bind:group={data.type} value={2} class="form-check-input" type="radio" name="learner-no-show" id="learner-no-show" required>
+            <input bind:group={data.type} value={2} class="form-check-input" type="radio" name="learner-no-show" id="learner-no-show">
             <label class="form-check-label" for="learner-no-show">
               No learners showed up in the session.
             </label>
           </div>
           <div class="form-check">
-            <input bind:group={data.type} value={3} class="form-check-input" type="radio" name="none-of-the-above" id="none-of-the-above" required>
+            <input bind:group={data.type} value={3} class="form-check-input" type="radio" name="none-of-the-above" id="none-of-the-above">
             <label class="form-check-label" for="none-of-the-above">
               None of the above
             </label>
@@ -113,11 +113,11 @@
                 {question[1]}
               </div>
               <div class="col-12 form-check mt-1 mt-md-0">
-                <input type="radio" class="form-check-input" bind:group={data.answers[question[0]]} value={true} id={`${question[0]}-y`} checked required>
+                <input type="radio" class="form-check-input" bind:group={data.answers[question[0]]} value={true} id={`${question[0]}-y`} checked>
                 <label class="form-check-label" for={`${question[0]}-y`}>Yes</label>
               </div>
               <div class="form-check">
-                <input type="radio" class="form-check-input" bind:group={data.answers[question[0]]} value={false} id={`${question[0]}-n`} required>
+                <input type="radio" class="form-check-input" bind:group={data.answers[question[0]]} value={false} id={`${question[0]}-n`}>
                 <label class="form-check-label" for={`${question[0]}-n`}>No</label>
               </div>
             </div>
