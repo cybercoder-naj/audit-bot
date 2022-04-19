@@ -1,14 +1,26 @@
 <script>
   import { onMount } from 'svelte'
 
-  let isLiveHelp = true
   let data = {
     auditor: '',
     tutor: '',
     session: '',
     date: '',
-    topic: ''
+    topic: '',
+    type: 1,
+    isLiveHelp: true,
+    answers: {
+      engagement: true,
+      mastery: true,
+      active: true
+    }
   }
+
+  const questions = [
+    ['engagement', 'Did the tutor create an engaging environment?'],
+    ['mastery', 'Did the tutor teach the topic without significant errors?'],
+    ['active', 'Did the tutor maintain an active learning environment?']
+  ]
 
   let today = ''
   onMount(() => {
@@ -24,8 +36,10 @@
     data.date = today
   })
 
-  function handleSubmit() {
-
+  function handleSubmit(e) {
+    e.preventDefault()
+    alert("Check console for submitted data.");
+    console.table(data)
   }
 </script>
 
@@ -36,38 +50,78 @@
     <div class="container-fluid px-5 mt-3">
       <div class="row align-items-center">
         <div class="col-md-6 col-lg-3">
-          <input bind:value={data.auditor} type="text" id="auditorName" class="form-control" placeholder="Enter your name">
+          <input bind:value={data.auditor} type="text" id="auditorName" required class="form-control" placeholder="Enter your name">
         </div>
         <div class="mt-3 mt-md-0 col-md-6 col-lg-3">
-          <input type="text" id="tutorName" bind:value={data.tutor} class="form-control" placeholder="Enter the tutor's name">
+          <input type="text" id="tutorName" bind:value={data.tutor} class="form-control" required placeholder="Enter the tutor's name">
         </div>
         <div class="mt-3 col-md-6 col-lg-3 mt-lg-0">
-          <input type="text" id="sessionNumber" bind:value={data.session} class="form-control" placeholder="Enter the session number">
+          <input type="text" id="sessionNumber" bind:value={data.session} class="form-control" required placeholder="Enter the session number">
         </div>
         <div class="mt-3 col-md-6 col-lg-3 mt-lg-0">
-          <input type="date" id="date" class="form-control" bind:value={data.date} min="2022-01-01" max={today}>
+          <input type="date" id="date" class="form-control" bind:value={data.date} min="2022-01-01" required max={today}>
         </div>
         <div class="col-12 mt-3">
           <div class="d-inline-block">
             Was this a Live Help Session?
           </div>
           <div class="col-12 form-check mt-1 mt-md-0 d-inline-block">
-            <input bind:group={isLiveHelp} value={true} class="form-check-input" type="radio" name="live-help" id="live-help-y" checked>
+            <input bind:group={data.isLiveHelp} value={true} class="form-check-input" type="radio" name="live-help" required id="live-help-y" checked>
             <label class="form-check-label" for="live-help-y">
               Yes
             </label>
           </div>
           <div class="form-check d-inline-block">
-            <input bind:group={isLiveHelp} value={false} class="form-check-input" type="radio" name="live-help" id="live-help-n">
+            <input bind:group={data.isLiveHelp} value={false} class="form-check-input" type="radio" name="live-help" required id="live-help-n">
             <label class="form-check-label" for="live-help-n">
               No
             </label>
           </div>
         </div>
-        {#if !isLiveHelp}
+        {#if !data.isLiveHelp}
           <div>
-            <input type="text" bind:value={data.topic} id="topic" class="form-control mt-3" placeholder="Enter the topic name">
+            <input type="text" bind:value={data.topic} id="topic" class="form-control mt-3" placeholder="Enter the topic name" required>
           </div>
+        {/if}
+        <div class="col-12 mt-3">
+          <div>
+            Choose the best option from below:
+          </div>
+          <div class="col-12 form-check mt-1 mt-md-0">
+            <input bind:group={data.type} value={1} class="form-check-input" type="radio" name="tutor-no-show" id="tutor-no-show" checked required>
+            <label class="form-check-label" for="tutor-no-show">
+              The tutor did not start the meeting.
+            </label>
+          </div>
+          <div class="form-check">
+            <input bind:group={data.type} value={2} class="form-check-input" type="radio" name="learner-no-show" id="learner-no-show" required>
+            <label class="form-check-label" for="learner-no-show">
+              No learners showed up in the session.
+            </label>
+          </div>
+          <div class="form-check">
+            <input bind:group={data.type} value={3} class="form-check-input" type="radio" name="none-of-the-above" id="none-of-the-above" required>
+            <label class="form-check-label" for="none-of-the-above">
+              None of the above
+            </label>
+          </div>
+        </div>
+        {#if data.type == 3}
+          {#each questions as question}
+            <div class="col-12 mt-3">
+              <div>
+                {question[1]}
+              </div>
+              <div class="col-12 form-check mt-1 mt-md-0">
+                <input type="radio" class="form-check-input" bind:group={data.answers[question[0]]} value={true} id={`${question[0]}-y`} checked required>
+                <label class="form-check-label" for={`${question[0]}-y`}>Yes</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" bind:group={data.answers[question[0]]} value={false} id={`${question[0]}-n`} required>
+                <label class="form-check-label" for={`${question[0]}-n`}>No</label>
+              </div>
+            </div>
+          {/each}
         {/if}
         <div class="mt-3 col-md-6 offset-md-3">
           <input type="submit" class="btn btn-primary form-control" value="Next">
